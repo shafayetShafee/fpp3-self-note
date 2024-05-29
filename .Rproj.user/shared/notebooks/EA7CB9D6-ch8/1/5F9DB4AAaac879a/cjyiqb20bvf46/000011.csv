@@ -1,0 +1,6 @@
+"0","# Estimate parameters"
+"0","fit <- algeria_economy |>"
+"0","  model(ETS(Exports ~ error(""A"") + trend(""N"") + season(""N"")))"
+"0",""
+"0","fc <- fit %>% "
+"0","  forecast(h = 5)"

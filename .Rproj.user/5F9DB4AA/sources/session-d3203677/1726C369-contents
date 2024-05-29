@@ -1,0 +1,90 @@
+# Exponential Smoothing
+
+## Simple Exponential Smoothing
+
+```{r}
+algeria_economy <- global_economy |>
+  filter(Country == "Algeria")
+
+algeria_economy |>
+  autoplot(Exports) +
+  labs(y = "% of GDP", title = "Exports: Algeria")
+```
+
+
+```{r}
+# Estimate parameters
+fit <- algeria_economy |>
+  model(ETS(Exports ~ error("A") + trend("N") + season("N")))
+
+fc <- fit %>% 
+  forecast(h = 5)
+```
+
+
+```{r}
+fc %>% 
+  autoplot(algeria_economy) +
+  geom_line(aes(y = .fitted), color = "red", data = augment(fit))
+```
+
+
+## Methods with Trend
+
+```{r}
+aus_economy <- global_economy |>
+  filter(Code == "AUS") |>
+  mutate(Pop = Population / 1e6)
+
+autoplot(aus_economy, Pop) +
+  labs(y = "Millions", title = "Australian population")
+```
+
+
+```{r}
+fit <- aus_economy %>% 
+  model(
+    AAN = ETS(Pop ~ error("A") + trend("A") + season("N"))
+  )
+
+fc <- fit %>% 
+  forecast(h = 10)
+```
+
+```{r}
+components(fit) %>% 
+  autoplot()
+```
+
+```{r}
+aus_economy %>% 
+  model(
+    `Holt's method` = ETS(Pop ~ error("A") + trend("A") + season("N")),
+    `Damped Holt's method` = ETS(Pop ~ error("A") + trend("Ad", phi = 0.9) + season("N")),
+  ) %>% 
+  forecast(h = 15) %>% 
+  autoplot(aus_economy, level = NULL)
+```
+
+```{r}
+# Re-index based on trading days
+google_stock <- gafa_stock |>
+  filter(Symbol == "GOOG", year(Date) >= 2015) |>
+  mutate(day = row_number()) |>
+  update_tsibble(index = day, regular = TRUE)
+
+# Filter the year of interest
+google_2015 <- google_stock |> filter(year(Date) == 2015)
+```
+
+
+```{r}
+# Time series cross-validation accuracy
+google_2015_tr <- google_2015 |>
+  stretch_tsibble(.init = 3, .step = 1) |>
+  relocate(Date, Symbol, .id)
+
+google_2015_tr
+```
+
+

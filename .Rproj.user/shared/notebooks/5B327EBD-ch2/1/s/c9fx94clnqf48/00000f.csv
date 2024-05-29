@@ -1,0 +1,6 @@
+"0","tourism %>% "
+"0","  filter(Purpose == 'Holiday') %>% "
+"0","  group_by(State) %>% "
+"0","  summarize(Trips = sum(Trips)) -> holidays"
+"0",""
+"0","holidays"

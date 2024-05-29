@@ -1,0 +1,223 @@
+# GAMS for Time Series
+
+> Disclaimer: The original source of the following contents is [here](https://asbates.rbind.io/2019/05/03/gams-for-time-series/)
+
+
+## Setup
+
+```{r}
+#| message: false
+library(tidyverse)
+library(forecast)
+library(mgcv)
+```
+
+
+```{r}
+#| message: false
+theme_set(theme_bw())
+
+flu <- read_csv("https://raw.githubusercontent.com/asbates/nonlinear-models/master/data/ilinet-calif-up-to-2019-03-31.csv") %>% 
+  mutate(t = 1:nrow(.))
+
+flu
+```
+
+```{r}
+flu_train <- flu %>% filter(week_start < "2019-01-01")
+flu_test <- flu %>% filter(week_start >= "2019-01-01")
+```
+
+
+## Baseline Model
+
+```{r}
+old_model <- gam(ilitotal ~ s(week) + s(year), data = flu_train)
+
+flu_train %>% 
+  mutate(
+    fitted_gam = predict(old_model)
+  ) %>% 
+  ggplot(aes(week_start, ilitotal)) +
+  geom_line() +
+  geom_line(aes(y = fitted_gam, color = "Fitted GAM")) +
+  scale_color_discrete(name = "model")
+```
+
+## Different Basis Functions
+
+$$
+y = f_{trend}(x_1) + f_{seasonal}(x_2)
+$$
+
+- In GAM, we will use a smooth to account for the trend component of the series and a smooth to account for the seasonal component.
+
+- Since the above data is weekly, we will use week as our seasonal component.
+
+- For trend component, we need to use such variable that captures the overall orders of the trend. We will use the UTC value of the time.
+
+- We will fit two models, one with the default "Thin Plate" spline for trend comp and another with the "Gaussian Process" spline for the trend comp.
+
+- To model seasonal component, we will use "Cyclic Cubic Spline" basis with basis dimension $k = 52$.
+
+```{r}
+flu_train %>% 
+  mutate(time = as.numeric(week_start)) -> flu_train
+
+flu_test %>% 
+  mutate(time = as.numeric(week_start)) -> flu_test
+```
+
+
+```{r}
+tp_cc <- gam(ilitotal ~ s(time) + s(week, bs = 'cc', k = 52), data = flu_train)
+gp_cc <- gam(ilitotal ~ s(time, bs = 'gp') + s(week, bs = 'cc', k = 52), data = flu_train)
+```
+
+
+```{r}
+flu_train %>% 
+  mutate(
+    fitted_tp_cc = predict(tp_cc),
+    fitted_gp_cc = predict(gp_cc)
+  ) %>% 
+  pivot_longer(cols = starts_with("fitted"), names_to = "model", values_to = "value") %>% 
+  ggplot(aes(week_start, ilitotal)) +
+  geom_line() +
+  geom_line(aes(y = value, color = model)) +
+  scale_color_manual(
+    values = c("fitted_gp_cc" = "springgreen3", "fitted_tp_cc" = "red2")
+  )
+```
+
+```{r}
+flu_test %>% 
+  mutate(
+    pred_tp_cc = predict(tp_cc, newdata = .),
+    pred_gp_cc = predict(gp_cc, newdata = .)
+  ) %>% 
+  pivot_longer(cols = starts_with("pred"), names_to = "model", values_to = "value") %>% 
+  ggplot(aes(week_start, ilitotal)) + 
+  geom_line() +
+  geom_line(aes(y = value, color = model)) +
+  ylim(0, NA)
+```
+
+- Which aren’t very good. One problem might be that we have some residual autocorrelation because we aren’t explicitly accounting for it
+
+
+```{r}
+#| layout-ncol: 2
+#| layout-nrow: 2
+forecast::ggAcf(resid(tp_cc)) +
+  labs(title = "tp smoothed trend")
+
+forecast::ggPacf(resid(tp_cc)) +
+  labs(title = "tp smoothed trend")
+
+forecast::ggAcf(resid(gp_cc)) +
+  labs(title = "gp smoothed trend")
+
+forecast::ggPacf(resid(gp_cc)) +
+  labs(title = "gp smoothed trend")
+```
+
+## Accounting for autocorrelation
+
+- To account for the correlation we can use `GAMM` (Generalized Additive Mixed Model), which allows us to specify a correlation structure for residuals.
+
+- From the ACF and PACF plots, it looks like we should be using AR terms, possibly up to order 4.
+
+```{r}
+ar0 <- gamm(ilitotal ~ s(time) + s(week, bs = "cc", k = 52), data = flu_train)
+
+ar1 <- gamm(ilitotal ~ s(time) + s(week, bs = "cc", k = 52), 
+            data = flu_train,
+            correlation = corARMA(form = ~ 1 | year, p = 1))
+
+ar2 <- gamm(ilitotal ~ s(time) + s(week, bs = "cc", k = 52), 
+            data = flu_train,
+            correlation = corARMA(form = ~ 1 | year, p = 2))
+
+ar3 <- gamm(ilitotal ~ s(time) + s(week, bs = "cc", k = 52), 
+            data = flu_train,
+            correlation = corARMA(form = ~ 1 | year, p = 3))
+
+ar4 <- gamm(ilitotal ~ s(time) + s(week, bs = "cc", k = 52), 
+            data = flu_train,
+            correlation = corARMA(form = ~ 1 | year, p = 4))
+```
+
+
+```{r}
+flu_train %>% 
+  mutate(
+    fitted_ar0 = predict(ar0$gam),
+    fitted_ar1 = predict(ar1$gam),
+    fitted_ar2 = predict(ar2$gam),
+    fitted_ar3 = predict(ar3$gam),
+    fitted_ar4 = predict(ar4$gam)
+  ) %>% 
+  pivot_longer(cols = starts_with("fitted"), names_to = "model", values_to = "value") %>% 
+  ggplot(aes(week_start, ilitotal)) +
+  geom_line() +
+  geom_line(aes(y = value, color = model))
+```
+
+Let's compare the models using anova
+
+```{r}
+anova(ar0$lme, ar1$lme, ar2$lme, ar3$lme, ar4$lme)
+```
+
+- We may go with the AR(1) model.
+
+```{r}
+flu_test %>% 
+  mutate(
+    predict_ar1 = predict(ar1$gam, newdata = .)
+  ) %>% 
+  ggplot(aes(week_start, ilitotal)) +
+  geom_line() +
+  geom_line(aes(y = predict_ar1), color = "maroon")
+```
+
+> predictions don’t involve the AR process we used to model the error terms (`predict.gam` can't do this)
+
+
+## Manually accounting for autocorrelation
+
+```{r}
+gam_mod <- gam(ilitotal ~ s(time) + s(week, bs = "cc", k = 52), data = flu_train)
+
+gam_errors <- residuals(gam_mod, type = "response")
+
+error_mod <- auto.arima(gam_errors)
+error_mod
+```
+
+```{r}
+checkresiduals(error_mod)
+```
+
+Lets generate the forecast,
+
+```{r}
+error_fcast <- forecast(error_mod, h = 13)$mean
+gam_fcast <- predict(gam_mod, newdata = flu_test)
+
+fcast <- gam_fcast + error_fcast
+```
+
+
+```{r}
+flu_test %>% 
+  mutate(
+    fcast = fcast
+  ) %>% 
+  ggplot(aes(week_start, ilitotal)) +
+  geom_line() +
+  geom_line(aes(y = fcast), color = "maroon")
+```
+
+- Not good actually.

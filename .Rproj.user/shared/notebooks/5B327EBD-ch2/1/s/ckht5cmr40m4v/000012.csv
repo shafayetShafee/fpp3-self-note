@@ -1,0 +1,8 @@
+"0","#| message: false"
+"0","#| fig-width: 10"
+"0","tourism %>% "
+"0","  group_by(State) %>% "
+"0","  summarise(Trips = sum(Trips)) %>% "
+"0","  pivot_wider(names_from = State, values_from = Trips) %>% "
+"0","  GGally::ggpairs(columns = 2:9)"
+"0",""

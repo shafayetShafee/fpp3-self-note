@@ -1,0 +1,3 @@
+"0",""
+"0","forecast::ggPacf(resid(tp_cc)) +"
+"0","  labs(title = ""tp smoothed trend"")"

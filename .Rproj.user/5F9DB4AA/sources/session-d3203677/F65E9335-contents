@@ -1,0 +1,88 @@
+# Interpret and Report GAM
+
+> Disclaimer: The original source of the following contents is [here](https://ecogambler.netlify.app/blog/interpreting-gams/)
+
+## Setup
+
+```{r}
+#| message: false
+library(mgcv)            
+library(tidyverse)       
+library(marginaleffects) 
+library(ggplot2)
+library(patchwork) 
+```
+
+
+```{r}
+theme_set(theme_classic(base_size = 12, base_family = 'serif') +
+            theme(axis.line.x.bottom = element_line(colour = "black",
+                                                    linewidth = 1),
+                  axis.line.y.left = element_line(colour = "black",
+                                                  linewidth = 1),
+                  panel.spacing = unit(0, 'lines'),
+                  legend.margin = margin(0, 0, 0, -15)))
+```
+
+```{r}
+data(CO2, package = "datasets")
+```
+
+```{r}
+glimpse(CO2)
+```
+
+```{r}
+plot(CO2)
+```
+
+
+```{r}
+CO2 %>% 
+  as_tibble() %>% 
+  janitor::clean_names() %>% 
+  mutate(plant = factor(plant, ordered = FALSE)) -> plant
+```
+
+
+```{r}
+model_1 <- gam(
+  uptake ~ treatment * type + 
+    s(plant, bs = 're') +
+    s(conc, by = treatment, k = 7),
+  data = plant,
+  method = "REML",
+  family = Gamma(link = "log")
+)
+
+summary(model_1)
+  
+```
+
+## Visulizing GAM Outputs
+
+**Partial effect plots on the link scale**: plots that show the individual component effect of the smooth function on the link scale, conditional on all other terms in the model being zero.
+
+```{r}
+plot(model_1, select = 2, shade = TRUE)
+```
+
+This plot shows that, for the nonchilled treatment, the effect of conc on the linear predictor is mostly negative (below zero) for small values of `conc`, but it quickly becomes positive (above zero) for intermediate values of `conc.` It then begins to plateau at larger values of `conc.` We can also look at the effect for the other level of treatment.
+
+```{r}
+plot(model_1, select = 3, shade = TRUE)
+```
+
+This plot looks broadly similar, but it is not identical to the nonchilled treatment effect.
+
+
+```{r}
+plot_predictions(model_1, condition = "conc", type = "link") +
+  labs(
+    y = "Linear predictor (link scale)",
+    title = "Average smooth effect of concentration",
+    subtitle = "Aggregated across treatments and types"
+  )
+```
+
+

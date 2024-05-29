@@ -1,0 +1,3 @@
+"0","#| message: false"
+"0","prison <- readr::read_csv(""https://OTexts.com/fpp3/extrafiles/prison_population.csv"")"
+"0","head(prison)"

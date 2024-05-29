@@ -1,0 +1,7 @@
+"0","#| message: false"
+"0","theme_set(theme_bw())"
+"0",""
+"0","flu <- read_csv(""https://raw.githubusercontent.com/asbates/nonlinear-models/master/data/ilinet-calif-up-to-2019-03-31.csv"") %>% "
+"0","  mutate(t = 1:nrow(.))"
+"0",""
+"0","flu"

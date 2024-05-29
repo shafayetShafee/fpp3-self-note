@@ -1,0 +1,4 @@
+"0","error_fcast <- forecast(error_mod, h = 13)$mean"
+"0","gam_fcast <- predict(gam_mod, newdata = flu_test)"
+"0",""
+"0","fcast <- gam_fcast + error_fcast"

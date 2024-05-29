@@ -1,0 +1,4 @@
+"0","aus_production %>% "
+"0","  filter(year(Quarter) >= 2000) -> recent_production"
+"0","  "
+"0","recent_production %>% gg_lag(Beer, geom = ""point"")"

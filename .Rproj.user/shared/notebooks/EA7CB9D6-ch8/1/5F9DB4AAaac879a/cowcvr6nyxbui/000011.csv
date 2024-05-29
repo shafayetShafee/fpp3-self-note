@@ -1,0 +1,6 @@
+"0","# Time series cross-validation accuracy"
+"0","google_2015_tr <- google_2015 |>"
+"0","  stretch_tsibble(.init = 3, .step = 1) |>"
+"0","  relocate(Date, Symbol, .id)"
+"0",""
+"0","google_2015_tr"

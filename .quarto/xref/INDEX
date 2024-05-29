@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "060f0774"
+  },
+  "intro.qmd": {
+    "intro.html": "3cb64266"
+  },
+  "summary.qmd": {
+    "summary.html": "faf9a170"
+  },
+  "references.qmd": {
+    "references.html": "e4537899"
+  },
+  "ch1.qmd": {
+    "ch1.html": "864cb317"
+  },
+  "ch2.qmd": {
+    "ch2.html": "09d46a40"
+  },
+  "ch3.qmd": {
+    "ch3.html": "7d495d69"
+  },
+  "time-series-with-spline.qmd": {
+    "time-series-with-spline.html": "acc5e228"
+  },
+  "gams-for-time-series.qmd": {
+    "gams-for-time-series.html": "ac8f81ba"
+  }
+}

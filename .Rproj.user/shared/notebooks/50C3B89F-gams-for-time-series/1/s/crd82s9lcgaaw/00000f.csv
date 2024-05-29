@@ -1,0 +1,2 @@
+"0","tp_cc <- gam(ilitotal ~ s(time) + s(week, bs = 'cc', k = 52), data = flu_train)"
+"0","gp_cc <- gam(ilitotal ~ s(time, bs = 'gp') + s(week, bs = 'cc', k = 52), data = flu_train)"

@@ -1,0 +1,3 @@
+"0","#| fig-height: 10"
+"0","holidays %>% "
+"0","  gg_season(Trips)"

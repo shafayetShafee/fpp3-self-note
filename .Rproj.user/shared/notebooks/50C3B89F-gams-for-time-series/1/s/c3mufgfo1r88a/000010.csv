@@ -1,0 +1,5 @@
+"0","flu_train %>% "
+"0","  mutate(time = as.numeric(week_start)) -> flu_train"
+"0",""
+"0","flu_test %>% "
+"0","  mutate(time = as.numeric(week_start)) -> flu_test"

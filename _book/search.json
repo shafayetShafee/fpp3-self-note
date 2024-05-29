@@ -1,0 +1,262 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Self Note of Forecasting: Principles and Practice",
+    "section": "",
+    "text": "Preface\nThis is a sort of note for myself while reading the book Forecasting: Principles and Practice1",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Self Note of Forecasting: Principles and Practice",
+    "section": "",
+    "text": "Hyndman, R.J., & Athanasopoulos, G. (2021) Forecasting: principles and practice, 3rd edition, OTexts: Melbourne, Australia. OTexts.com/fpp3. Accessed on 2024-04-26.↩︎",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Gettting Started",
+    "section": "",
+    "text": "1.1 What can be forecast?\nWhether we can or cannot forecast an event depends on a few factors,\nFor example, residential electricity demand can be forecast with high accuracy for short term since it satisfies all the four conditions, while predicting the exchange rate is difficult, since it statisfies only the condition (2), specifically violates the condition (4).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Gettting Started</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "intro.html#what-can-be-forecast",
+    "href": "intro.html#what-can-be-forecast",
+    "title": "1  Gettting Started",
+    "section": "",
+    "text": "how well we understand the contributing factors of the forecast;\nhow much data is available;\nhow similar the future is to the past;\nwhether the forecast can affect the thing we trying to forecast;",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Gettting Started</span>"
+    ]
+  },
+  {
+    "objectID": "ch1.html",
+    "href": "ch1.html",
+    "title": "1  Gettting Started",
+    "section": "",
+    "text": "1.1 What can be forecast?\nWhether we can or cannot forecast an event depends on a few factors,\nFor example, residential electricity demand can be forecast with high accuracy for short term since it satisfies all the four conditions, while predicting the exchange rate is difficult, since it statisfies only the condition (2), specifically violates the condition (4).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Gettting Started</span>"
+    ]
+  },
+  {
+    "objectID": "ch1.html#what-can-be-forecast",
+    "href": "ch1.html#what-can-be-forecast",
+    "title": "1  Gettting Started",
+    "section": "",
+    "text": "how well we understand the contributing factors of the forecast;\nhow much data is available;\nhow similar the future is to the past;\nwhether the forecast can affect the thing we trying to forecast;",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Gettting Started</span>"
+    ]
+  },
+  {
+    "objectID": "ch1.html#questions-to-consider-when-forecasting",
+    "href": "ch1.html#questions-to-consider-when-forecasting",
+    "title": "1  Gettting Started",
+    "section": "1.2 Questions to consider when forecasting",
+    "text": "1.2 Questions to consider when forecasting\n\nAbout what forecasts should be made?\nWhat would be the forecasting horizon?\nHow frequently are forecasts required?\n\n\nThe further ahead we forecase, the more uncertain we are!",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Gettting Started</span>"
+    ]
+  },
+  {
+    "objectID": "ch1.html#forecasting-data-methods",
+    "href": "ch1.html#forecasting-data-methods",
+    "title": "1  Gettting Started",
+    "section": "1.3 Forecasting Data & Methods",
+    "text": "1.3 Forecasting Data & Methods\n\nQualitative forecasting: When historical data are not available. Or the available data are not relevant to the forecasts.\nQuantitative forecasting: When historical data are available and we can assume some aspect of past patterns will continue to prevail in the future too.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Gettting Started</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html",
+    "href": "ch2.html",
+    "title": "2  Time Series Graphics",
+    "section": "",
+    "text": "2.1 tsibble objects\nlibrary(fpp3)\nolympic_running\n\n# A tsibble: 312 x 4 [4Y]\n# Key:       Length, Sex [14]\n    Year Length Sex    Time\n   &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;\n 1  1896    100 men    12  \n 2  1900    100 men    11  \n 3  1904    100 men    11  \n 4  1908    100 men    10.8\n 5  1912    100 men    10.8\n 6  1916    100 men    NA  \n 7  1920    100 men    10.8\n 8  1924    100 men    10.6\n 9  1928    100 men    10.8\n10  1932    100 men    10.3\n# ℹ 302 more rows\nPBS\n\n# A tsibble: 67,596 x 9 [1M]\n# Key:       Concession, Type, ATC1, ATC2 [336]\n      Month Concession   Type      ATC1  ATC1_desc ATC2  ATC2_desc Scripts  Cost\n      &lt;mth&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 1991 Jul Concessional Co-payme… A     Alimenta… A01   STOMATOL…   18228 67877\n 2 1991 Aug Concessional Co-payme… A     Alimenta… A01   STOMATOL…   15327 57011\n 3 1991 Sep Concessional Co-payme… A     Alimenta… A01   STOMATOL…   14775 55020\n 4 1991 Oct Concessional Co-payme… A     Alimenta… A01   STOMATOL…   15380 57222\n 5 1991 Nov Concessional Co-payme… A     Alimenta… A01   STOMATOL…   14371 52120\n 6 1991 Dec Concessional Co-payme… A     Alimenta… A01   STOMATOL…   15028 54299\n 7 1992 Jan Concessional Co-payme… A     Alimenta… A01   STOMATOL…   11040 39753\n 8 1992 Feb Concessional Co-payme… A     Alimenta… A01   STOMATOL…   15165 54405\n 9 1992 Mar Concessional Co-payme… A     Alimenta… A01   STOMATOL…   16898 61108\n10 1992 Apr Concessional Co-payme… A     Alimenta… A01   STOMATOL…   18141 65356\n# ℹ 67,586 more rows\nPBS %&gt;% \n  filter(ATC2 == 'A10') %&gt;% \n  select(Month, Concession, Type, Cost)\n\n# A tsibble: 816 x 4 [1M]\n# Key:       Concession, Type [4]\n      Month Concession   Type           Cost\n      &lt;mth&gt; &lt;chr&gt;        &lt;chr&gt;         &lt;dbl&gt;\n 1 1991 Jul Concessional Co-payments 2092878\n 2 1991 Aug Concessional Co-payments 1795733\n 3 1991 Sep Concessional Co-payments 1777231\n 4 1991 Oct Concessional Co-payments 1848507\n 5 1991 Nov Concessional Co-payments 1686458\n 6 1991 Dec Concessional Co-payments 1843079\n 7 1992 Jan Concessional Co-payments 1564702\n 8 1992 Feb Concessional Co-payments 1732508\n 9 1992 Mar Concessional Co-payments 2046102\n10 1992 Apr Concessional Co-payments 2225977\n# ℹ 806 more rows\nPBS %&gt;% \n  filter(ATC2 == 'A10') %&gt;% \n  select(Month, Concession, Type, Cost) %&gt;% \n  summarize(total = sum(Cost))\n\n# A tsibble: 204 x 2 [1M]\n      Month   total\n      &lt;mth&gt;   &lt;dbl&gt;\n 1 1991 Jul 3526591\n 2 1991 Aug 3180891\n 3 1991 Sep 3252221\n 4 1991 Oct 3611003\n 5 1991 Nov 3565869\n 6 1991 Dec 4306371\n 7 1992 Jan 5088335\n 8 1992 Feb 2814520\n 9 1992 Mar 2985811\n10 1992 Apr 3204780\n# ℹ 194 more rows\nPBS %&gt;% \n  filter(ATC2 == 'A10') %&gt;% \n  select(Month, Concession, Type, Cost) %&gt;% \n  summarize(total = sum(Cost)) %&gt;% \n  mutate(Cost = total / 1e6) -&gt; a10",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#tsibble-objects",
+    "href": "ch2.html#tsibble-objects",
+    "title": "2  Time Series Graphics",
+    "section": "",
+    "text": "[4Y] =&gt; Its a every four year data\nThere are 14 time series based on the Length and Sex variable.\n\n\n\n\nNote that the index variable Month, and the keys Concession and Type, would be returned even if they were not explicitly selected as they are required for a tsibble (to ensure each row contains a unique combination of keys and index).\n\n\n\n\n2.1.1 Read a csv file and convert it to a tsibble\n\nprison &lt;- readr::read_csv(\"https://OTexts.com/fpp3/extrafiles/prison_population.csv\")\nhead(prison)\n\n# A tibble: 6 × 6\n  Date       State Gender Legal     Indigenous Count\n  &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;\n1 2005-03-01 ACT   Female Remanded  ATSI           0\n2 2005-03-01 ACT   Female Remanded  Non-ATSI       2\n3 2005-03-01 ACT   Female Sentenced ATSI           0\n4 2005-03-01 ACT   Female Sentenced Non-ATSI       5\n5 2005-03-01 ACT   Male   Remanded  ATSI           7\n6 2005-03-01 ACT   Male   Remanded  Non-ATSI      58\n\n\n\nunique(prison$Date)\n\n [1] \"2005-03-01\" \"2005-06-01\" \"2005-09-01\" \"2005-12-01\" \"2006-03-01\"\n [6] \"2006-06-01\" \"2006-09-01\" \"2006-12-01\" \"2007-03-01\" \"2007-06-01\"\n[11] \"2007-09-01\" \"2007-12-01\" \"2008-03-01\" \"2008-06-01\" \"2008-09-01\"\n[16] \"2008-12-01\" \"2009-03-01\" \"2009-06-01\" \"2009-09-01\" \"2009-12-01\"\n[21] \"2010-03-01\" \"2010-06-01\" \"2010-09-01\" \"2010-12-01\" \"2011-03-01\"\n[26] \"2011-06-01\" \"2011-09-01\" \"2011-12-01\" \"2012-03-01\" \"2012-06-01\"\n[31] \"2012-09-01\" \"2012-12-01\" \"2013-03-01\" \"2013-06-01\" \"2013-09-01\"\n[36] \"2013-12-01\" \"2014-03-01\" \"2014-06-01\" \"2014-09-01\" \"2014-12-01\"\n[41] \"2015-03-01\" \"2015-06-01\" \"2015-09-01\" \"2015-12-01\" \"2016-03-01\"\n[46] \"2016-06-01\" \"2016-09-01\" \"2016-12-01\"\n\n\n\nprison %&gt;% \n  mutate(Quarter = yearquarter(Date)) %&gt;% \n  select(-Date) %&gt;% \n  as_tsibble(\n    key = c(State, Gender, Legal, Indigenous),\n    index = Quarter\n  ) -&gt; prison\n\n\nprison\n\n# A tsibble: 3,072 x 6 [1Q]\n# Key:       State, Gender, Legal, Indigenous [64]\n   State Gender Legal    Indigenous Count Quarter\n   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;   &lt;qtr&gt;\n 1 ACT   Female Remanded ATSI           0 2005 Q1\n 2 ACT   Female Remanded ATSI           1 2005 Q2\n 3 ACT   Female Remanded ATSI           0 2005 Q3\n 4 ACT   Female Remanded ATSI           0 2005 Q4\n 5 ACT   Female Remanded ATSI           1 2006 Q1\n 6 ACT   Female Remanded ATSI           1 2006 Q2\n 7 ACT   Female Remanded ATSI           1 2006 Q3\n 8 ACT   Female Remanded ATSI           0 2006 Q4\n 9 ACT   Female Remanded ATSI           0 2007 Q1\n10 ACT   Female Remanded ATSI           1 2007 Q2\n# ℹ 3,062 more rows\n\n\n\n\n2.1.2 The seasonal period\n\nSeasonal period: Number of observations before the seasonal pattern repeats. For quarterly, monthly, weekly data, the seasonal period is the number of obs in a year.\n\n\nIf the data is observed more than once per week, then there is often more than one seasonal pattern in the data. For example, data with daily observations might have weekly (period = 7) or annual (period = 365) seasonal patterns. Similarly, data that are observed every minute might have hourly (period = 60), daily (period = 24 x 60 = 1440), weekly (period = 7 x 24 x 60) and annual seasonality (period = 365 x 24 x 60).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#time-plots",
+    "href": "ch2.html#time-plots",
+    "title": "2  Time Series Graphics",
+    "section": "2.2 Time plots",
+    "text": "2.2 Time plots\n\na10 %&gt;% \n  autoplot(Cost) +\n  labs(\n    y = \"$ (Millions)\",\n    title = \"Australian anitdiabetic drug sales\"\n  )",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#seasonal-plots",
+    "href": "ch2.html#seasonal-plots",
+    "title": "2  Time Series Graphics",
+    "section": "2.3 Seasonal plots",
+    "text": "2.3 Seasonal plots\n\na10 %&gt;% \n  gg_season(Cost, labels = \"both\")\n\n\n\n\n\n\n\n\n\n2.3.1 Multiple Seasonal Periods\n\nWhere the data has more than one seasonal pattern, the period argument can be used to select which seasonal plot is required.\n\n\nvic_elec %&gt;% \n  gg_season(Demand, period = \"day\") \n\n\n\n\n\n\n\n\n\nvic_elec %&gt;% \n  gg_season(Demand, period = \"week\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#seasonal-subseries-plots",
+    "href": "ch2.html#seasonal-subseries-plots",
+    "title": "2  Time Series Graphics",
+    "section": "2.4 Seasonal subseries plots",
+    "text": "2.4 Seasonal subseries plots\n\na10 %&gt;% \n  gg_subseries(Cost)\n\n\n\n\n\n\n\n\n\ntourism\n\n# A tsibble: 24,320 x 5 [1Q]\n# Key:       Region, State, Purpose [304]\n   Quarter Region   State           Purpose  Trips\n     &lt;qtr&gt; &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;    &lt;dbl&gt;\n 1 1998 Q1 Adelaide South Australia Business  135.\n 2 1998 Q2 Adelaide South Australia Business  110.\n 3 1998 Q3 Adelaide South Australia Business  166.\n 4 1998 Q4 Adelaide South Australia Business  127.\n 5 1999 Q1 Adelaide South Australia Business  137.\n 6 1999 Q2 Adelaide South Australia Business  200.\n 7 1999 Q3 Adelaide South Australia Business  169.\n 8 1999 Q4 Adelaide South Australia Business  134.\n 9 2000 Q1 Adelaide South Australia Business  154.\n10 2000 Q2 Adelaide South Australia Business  169.\n# ℹ 24,310 more rows\n\n\n\ntourism %&gt;% \n  filter(Purpose == 'Holiday') %&gt;% \n  group_by(State) %&gt;% \n  summarize(Trips = sum(Trips)) -&gt; holidays\n\nholidays\n\n# A tsibble: 640 x 3 [1Q]\n# Key:       State [8]\n   State Quarter Trips\n   &lt;chr&gt;   &lt;qtr&gt; &lt;dbl&gt;\n 1 ACT   1998 Q1  196.\n 2 ACT   1998 Q2  127.\n 3 ACT   1998 Q3  111.\n 4 ACT   1998 Q4  170.\n 5 ACT   1999 Q1  108.\n 6 ACT   1999 Q2  125.\n 7 ACT   1999 Q3  178.\n 8 ACT   1999 Q4  218.\n 9 ACT   2000 Q1  158.\n10 ACT   2000 Q2  155.\n# ℹ 630 more rows\n\n\n\nholidays %&gt;% autoplot(Trips)\n\n\n\n\n\n\n\n\n\nholidays %&gt;% \n  gg_season(Trips)\n\n\n\n\n\n\n\n\n\nholidays %&gt;% \n  gg_subseries(Trips)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#measuring-correlation-coefficient",
+    "href": "ch2.html#measuring-correlation-coefficient",
+    "title": "2  Time Series Graphics",
+    "section": "2.5 Measuring Correlation Coefficient",
+    "text": "2.5 Measuring Correlation Coefficient\n\ntourism %&gt;% \n  group_by(State) %&gt;% \n  summarise(Trips = sum(Trips)) %&gt;% \n  pivot_wider(names_from = State, values_from = Trips) %&gt;% \n  GGally::ggpairs(columns = 2:9)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#lagged-plots",
+    "href": "ch2.html#lagged-plots",
+    "title": "2  Time Series Graphics",
+    "section": "2.6 Lagged plots",
+    "text": "2.6 Lagged plots\n\naus_production %&gt;% \n  filter(year(Quarter) &gt;= 2000) %&gt;% \n  autoplot(Beer)\n\n\n\n\n\n\n\n\n\naus_production %&gt;% \n  filter(year(Quarter) &gt;= 2000) -&gt; recent_production\n  \nrecent_production %&gt;% gg_lag(Beer, geom = \"point\")\n\n\n\n\n\n\n\n\n\nPositive correlation at lag 4 and 8 =&gt; presence of strong seasonality.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "ch2.html#autocorrelation",
+    "href": "ch2.html#autocorrelation",
+    "title": "2  Time Series Graphics",
+    "section": "2.7 Autocorrelation",
+    "text": "2.7 Autocorrelation\n\nrecent_production %&gt;% ACF(y = Beer, lag_max = 9)\n\n# A tsibble: 9 x 2 [1Q]\n       lag      acf\n  &lt;cf_lag&gt;    &lt;dbl&gt;\n1       1Q -0.0530 \n2       2Q -0.758  \n3       3Q -0.0262 \n4       4Q  0.802  \n5       5Q -0.0775 \n6       6Q -0.657  \n7       7Q  0.00119\n8       8Q  0.707  \n9       9Q -0.0888 \n\n\n\nrecent_production %&gt;% \n  ACF(Beer) %&gt;% \n  autoplot()\n\n\n\n\n\n\n\n\n\nSo the ACF of a trended time series tends to have positive values that slowly decrease as the lags increase.\n\n\nWhen data are seasonal, the autocorrelations will be larger for the seasonal lags (at multiples of the seasonal period) than for other lags\n\n\na10 %&gt;% \n  ACF(Cost, lag_max = 48) %&gt;% \n  autoplot() +\n  labs(\n    title = \"Trended and Seasonal\"\n  )\n\n\n\n\n\n\n\n\nWhite Noise: Time series that show no autocorrelation is called white noise.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Time Series Graphics</span>"
+    ]
+  },
+  {
+    "objectID": "time-series-with-spline.html",
+    "href": "time-series-with-spline.html",
+    "title": "3  Time Series with Spline Based Models",
+    "section": "",
+    "text": "3.1 Setup\nlibrary(tidyverse)\nlibrary(fields)\nlibrary(earth)\nlibrary(mgcv)\nlibrary(forecast)\ntheme_set(theme_bw())\n\nflu &lt;- read_csv(\"https://raw.githubusercontent.com/asbates/nonlinear-models/master/data/ilinet-calif-up-to-2019-03-31.csv\") %&gt;% \n  mutate(t = 1:nrow(.))\n\nflu\n\n# A tibble: 444 × 8\n   week_start  year  week unweighted_ili ilitotal num_of_providers\n   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n 1 2010-10-03  2010    40           1.95      632              112\n 2 2010-10-10  2010    41           2.15      742              122\n 3 2010-10-17  2010    42           2.24      766              126\n 4 2010-10-24  2010    43           1.92      666              130\n 5 2010-10-31  2010    44           2.52      887              131\n 6 2010-11-07  2010    45           2.75      906              126\n 7 2010-11-14  2010    46           2.82     1020              131\n 8 2010-11-21  2010    47           3.16      729              134\n 9 2010-11-28  2010    48           2.61      939              135\n10 2010-12-05  2010    49           3.06     1072              135\n# ℹ 434 more rows\n# ℹ 2 more variables: total_patients &lt;dbl&gt;, t &lt;int&gt;\nflu %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line()\nThree spline based models will be explored here\nfor modeling the time series data.\nflu_train &lt;- flu %&gt;% filter(week_start &lt; \"2019-01-01\")\nflu_test &lt;- flu %&gt;% filter(week_start &gt;= \"2019-01-01\")\n\nflu_ts &lt;- ts(flu$ilitotal, frequency = 52)\nflu_ts_train &lt;- flu_ts[1:nrow(flu_train)]\nflu_ts_test &lt;- flu_ts[(nrow(flu_train) + 1):nrow(flu)]\n\n# TPS requires X, Y splitted\nx_train &lt;- flu_train %&gt;% select(t)\ny_train &lt;- flu_train %&gt;% select(ilitotal)\nx_test &lt;- flu_test %&gt;% select(t)\ny_test &lt;- flu_test %&gt;% select(ilitotal)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time Series with Spline Based Models</span>"
+    ]
+  },
+  {
+    "objectID": "time-series-with-spline.html#setup",
+    "href": "time-series-with-spline.html#setup",
+    "title": "3  Time Series with Spline Based Models",
+    "section": "",
+    "text": "Thin plate splines (TPS)\nMultivariate Additive Regression Splines (MARS)\nGeneralized Additive Models (GAM)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time Series with Spline Based Models</span>"
+    ]
+  },
+  {
+    "objectID": "time-series-with-spline.html#first-approach",
+    "href": "time-series-with-spline.html#first-approach",
+    "title": "3  Time Series with Spline Based Models",
+    "section": "3.2 First Approach",
+    "text": "3.2 First Approach\nHere we will model ilitotal by considering the time index t as the predictor.\n\n# ARIMA\narima_mod &lt;- auto.arima(flu_ts_train)\n\n# thin plate spline\ntps_mod &lt;- Tps(x_train, y_train)\n\n# MARS\nmars_mod &lt;- earth(ilitotal ~ t, data = flu_train)\n\n# GAM\ngam_mod &lt;- gam(ilitotal ~ s(t), data = flu_train, method = \"REML\")\n\n\nflu_train %&gt;% \n  mutate(\n    fitted_arima = fitted(arima_mod),\n    fitted_tps = fitted(tps_mod)[, 1],\n    fitted_mars = fitted(mars_mod)[, 1],\n    fitted_gam = fitted(gam_mod)\n  ) -&gt; flu_train_fitted\n\n\nflu_train_fitted %&gt;% \n  select(week_start, ilitotal, starts_with(\"fitted\")) %&gt;% \n  pivot_longer(cols = starts_with(\"fitted\"), names_to = \"model\", values_to = \"value\") %&gt;% \n  mutate(\n    model = str_remove(model, \"fitted_\")\n  ) %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = model))\n\n\n\n\n\n\n\n\n\nMARS and GAM are performing very poorly.\n\n\nflu_test %&gt;% \n  mutate(\n    pred_arima = forecast(arima_mod, h = 13)$mean[1:13],\n    pred_tps = predict(tps_mod, x_test)[, 1]\n  ) -&gt; flu_test_fitted\n\n\nflu_test_fitted %&gt;% \n  select(week_start, ilitotal, starts_with(\"pred\")) %&gt;% \n  pivot_longer(cols = starts_with(\"pred\"), names_to = \"forecast\", values_to = \"value\") %&gt;% \n  mutate(\n    model = str_remove(forecast, \"pred_\")\n  ) %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = forecast))\n\n\n\n\n\n\n\n\n\nflu %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(week_start, pred_arima, color = \"arima\"), data = flu_test_fitted) + \n  geom_line(aes(week_start, pred_tps, color = \"tps\"), data = flu_test_fitted) + \n  scale_color_manual(\n    values = c(\"arima\" = \"blue\", \"tps\" = \"red\"), name = \"model\"\n  )\n\n\n\n\n\n\n\n\n\nARIMA and TPS are performing very poorly too.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time Series with Spline Based Models</span>"
+    ]
+  },
+  {
+    "objectID": "time-series-with-spline.html#second-approach",
+    "href": "time-series-with-spline.html#second-approach",
+    "title": "3  Time Series with Spline Based Models",
+    "section": "3.3 Second Approach",
+    "text": "3.3 Second Approach\nHere week and year will be used as the predictor instead of t\n\nx_train &lt;- flu_train %&gt;% select(year, week)\nx_test &lt;- flu_test %&gt;% select(year, week)\n\n\n# thin plate spline\ntps_mod &lt;- Tps(x_train, y_train)\n\n# MARS\nmars_mod &lt;- earth(ilitotal ~ year + week, data = flu_train)\n\n# GAM\ngam_mod &lt;- gam(ilitotal ~ s(year) + s(week), data = flu_train, method = \"REML\")\n\n\nflu_train %&gt;% \n  mutate(\n    fitted_tps = fitted(tps_mod)[, 1],\n    fitted_mars = fitted(mars_mod)[, 1],\n    fitted_gam = fitted(gam_mod)\n  ) -&gt; flu_train_fitted\n\n\nflu_train_fitted %&gt;% \n  select(week_start, ilitotal, starts_with(\"fitted\")) %&gt;% \n  pivot_longer(cols = starts_with(\"fitted\"), names_to = \"model\", values_to = \"value\") %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = model))\n\n\n\n\n\n\n\n\n\nflu_test %&gt;% \n  mutate(\n    pred_tps = predict(tps_mod, x_test)[, 1],\n    pred_mars = predict(mars_mod, x_test)[, 1],\n    pred_gam = predict(gam_mod, newdata = flu_test)\n  ) -&gt; flu_test_fitted\n\n\nflu_test_fitted %&gt;% \n  select(week_start, ilitotal, starts_with(\"pred\")) %&gt;% \n  pivot_longer(cols = starts_with(\"pred\"), names_to = \"forecast\", values_to = \"value\") %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = forecast))\n\n\n\n\n\n\n\n\n\nflu %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(week_start, pred_tps, color = \"tps\"), data = flu_test_fitted) + \n  geom_line(aes(week_start, pred_mars, color = \"mars\"), data = flu_test_fitted) + \n  geom_line(aes(week_start, pred_gam, color = \"gam\"), data = flu_test_fitted) + \n  scale_color_manual(\n    values = c(\"mars\" = \"blue\", \"tps\" = \"red\", \"gam\" = \"green\"), name = \"model\"\n  )\n\n\n\n\n\n\n\n\n\nTPS is still doing better compared to the GAM and MARS.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time Series with Spline Based Models</span>"
+    ]
+  },
+  {
+    "objectID": "time-series-with-spline.html#third-approach",
+    "href": "time-series-with-spline.html#third-approach",
+    "title": "3  Time Series with Spline Based Models",
+    "section": "3.4 Third Approach",
+    "text": "3.4 Third Approach\nHere four lags of the ilitotal will be used as the predictors.\n\nflu %&gt;% \n  mutate(\n    lag_ilitotal = lag(ilitotal),\n    lag2_ilitotal = lag(ilitotal, n = 2L),\n    lag3_ilitotal = lag(ilitotal, n = 3L),\n    lag4_ilitotal = lag(ilitotal, n = 4L),\n  ) -&gt; lagged_flu\n\nlagged_flu\n\n# A tibble: 444 × 12\n   week_start  year  week unweighted_ili ilitotal num_of_providers\n   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n 1 2010-10-03  2010    40           1.95      632              112\n 2 2010-10-10  2010    41           2.15      742              122\n 3 2010-10-17  2010    42           2.24      766              126\n 4 2010-10-24  2010    43           1.92      666              130\n 5 2010-10-31  2010    44           2.52      887              131\n 6 2010-11-07  2010    45           2.75      906              126\n 7 2010-11-14  2010    46           2.82     1020              131\n 8 2010-11-21  2010    47           3.16      729              134\n 9 2010-11-28  2010    48           2.61      939              135\n10 2010-12-05  2010    49           3.06     1072              135\n# ℹ 434 more rows\n# ℹ 6 more variables: total_patients &lt;dbl&gt;, t &lt;int&gt;, lag_ilitotal &lt;dbl&gt;,\n#   lag2_ilitotal &lt;dbl&gt;, lag3_ilitotal &lt;dbl&gt;, lag4_ilitotal &lt;dbl&gt;\n\n\n\n# TPS can't handle NA\nflu_train &lt;- lagged_flu %&gt;% \n  filter(week_start &lt; \"2019-01-01\" & !is.na(lag4_ilitotal))\n  \nflu_test &lt;- lagged_flu %&gt;% filter(week_start &gt;= \"2019-01-01\")\n\n# TPS requires X, Y splited\nx_train &lt;- flu_train %&gt;% select(starts_with(\"lag\"))\ny_train &lt;- flu_train %&gt;% select(ilitotal)\nx_test &lt;- flu_test %&gt;% select(starts_with(\"lag\"))\ny_test &lt;- flu_test %&gt;% select(ilitotal)\n\n\ntps_mod &lt;- Tps(x_train, y_train)\nmars_mod &lt;- earth(ilitotal ~ lag_ilitotal + lag2_ilitotal + \n                    lag3_ilitotal + lag4_ilitotal, data = flu_train)\n\ngam_mod &lt;- gam(\n  ilitotal ~ s(lag_ilitotal) + s(lag2_ilitotal) + s(lag3_ilitotal) + s(lag4_ilitotal), \n  method = \"REML\",\n  data = flu_train\n)\n\n\nflu_train %&gt;% \n  mutate(\n    fitted_tps = fitted(tps_mod)[, 1],\n    fitted_mars = fitted(mars_mod)[, 1],\n    fitted_gam = fitted(gam_mod)\n  ) -&gt; flu_train_fitted\n\n\nflu_train_fitted %&gt;% \n  select(week_start, ilitotal, starts_with(\"fitted\")) %&gt;% \n  pivot_longer(cols = starts_with(\"fitted\"), names_to = \"model\", values_to = \"value\") %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = model))\n\n\n\n\n\n\n\n\n\nflu_test %&gt;% \n  mutate(\n    pred_tps = predict(tps_mod, x_test)[, 1],\n    pred_mars = predict(mars_mod, x_test)[, 1],\n    pred_gam = predict(gam_mod, newdata = flu_test)\n  ) -&gt; flu_test_fitted\n\n\nflu_test_fitted %&gt;% \n  select(week_start, ilitotal, starts_with(\"pred\")) %&gt;% \n  pivot_longer(cols = starts_with(\"pred\"), names_to = \"forecast\", values_to = \"value\") %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = forecast))\n\n\n\n\n\n\n\n\n\nflu %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(week_start, pred_tps, color = \"tps\"), data = flu_test_fitted) + \n  geom_line(aes(week_start, pred_mars, color = \"mars\"), data = flu_test_fitted) + \n  geom_line(aes(week_start, pred_gam, color = \"gam\"), data = flu_test_fitted) + \n  scale_color_manual(\n    values = c(\"mars\" = \"blue\", \"tps\" = \"red\", \"gam\" = \"green\"), name = \"model\"\n  )\n\n\n\n\n\n\n\n\n\nyardstick::metrics(flu_test_fitted, truth = ilitotal, estimate = pred_tps)\n\n# A tibble: 3 × 3\n  .metric .estimator .estimate\n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;\n1 rmse    standard    269.    \n2 rsq     standard      0.0759\n3 mae     standard    202.    \n\nyardstick::metrics(flu_test_fitted, truth = ilitotal, estimate = pred_mars)\n\n# A tibble: 3 × 3\n  .metric .estimator .estimate\n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;\n1 rmse    standard     201.   \n2 rsq     standard       0.306\n3 mae     standard     153.   \n\nyardstick::metrics(flu_test_fitted, truth = ilitotal, estimate = pred_gam)\n\n# A tibble: 3 × 3\n  .metric .estimator .estimate\n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;\n1 rmse    standard     219.   \n2 rsq     standard       0.258\n3 mae     standard     170.   \n\n\n\nMARS is the winner in this case.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time Series with Spline Based Models</span>"
+    ]
+  },
+  {
+    "objectID": "gams-for-time-series.html",
+    "href": "gams-for-time-series.html",
+    "title": "4  GAMS for Time Series",
+    "section": "",
+    "text": "4.1 Setup\nlibrary(tidyverse)\nlibrary(mgcv)\ntheme_set(theme_bw())\n\nflu &lt;- read_csv(\"https://raw.githubusercontent.com/asbates/nonlinear-models/master/data/ilinet-calif-up-to-2019-03-31.csv\") %&gt;% \n  mutate(t = 1:nrow(.))\n\nflu\n\n# A tibble: 444 × 8\n   week_start  year  week unweighted_ili ilitotal num_of_providers\n   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;\n 1 2010-10-03  2010    40           1.95      632              112\n 2 2010-10-10  2010    41           2.15      742              122\n 3 2010-10-17  2010    42           2.24      766              126\n 4 2010-10-24  2010    43           1.92      666              130\n 5 2010-10-31  2010    44           2.52      887              131\n 6 2010-11-07  2010    45           2.75      906              126\n 7 2010-11-14  2010    46           2.82     1020              131\n 8 2010-11-21  2010    47           3.16      729              134\n 9 2010-11-28  2010    48           2.61      939              135\n10 2010-12-05  2010    49           3.06     1072              135\n# ℹ 434 more rows\n# ℹ 2 more variables: total_patients &lt;dbl&gt;, t &lt;int&gt;\nflu_train &lt;- flu %&gt;% filter(week_start &lt; \"2019-01-01\")\nflu_test &lt;- flu %&gt;% filter(week_start &gt;= \"2019-01-01\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>GAMS for Time Series</span>"
+    ]
+  },
+  {
+    "objectID": "gams-for-time-series.html#baseline-model",
+    "href": "gams-for-time-series.html#baseline-model",
+    "title": "4  GAMS for Time Series",
+    "section": "4.2 Baseline Model",
+    "text": "4.2 Baseline Model\n\nold_model &lt;- gam(ilitotal ~ s(week) + s(year), data = flu_train)\n\nflu_train %&gt;% \n  mutate(\n    fitted_gam = predict(old_model)\n  ) %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = fitted_gam, color = \"Fitted GAM\")) +\n  scale_color_discrete(name = \"model\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>GAMS for Time Series</span>"
+    ]
+  },
+  {
+    "objectID": "gams-for-time-series.html#different-basis-functions",
+    "href": "gams-for-time-series.html#different-basis-functions",
+    "title": "4  GAMS for Time Series",
+    "section": "4.3 Different Basis Functions",
+    "text": "4.3 Different Basis Functions\n\\[\ny = f_{trend}(x_1) + f_{seasonal}(x_2)\n\\]\n\nIn GAM, we will use a smooth to account for the trend component of the series and a smooth to account for the seasonal component.\nSince the above data is weekly, we will use week as our seasonal component.\nFor trend component, we need to use such variable that captures the overall orders of the trend. We will use the UTC value of the time.\nWe will fit two models, one with the default “Thin Plate” spline for trend comp and another with the “Gaussian Process” spline for the trend comp.\nTo model seasonal component, we will use “Cyclic Cubic Spline” basis with basis dimension \\(k = 52\\).\n\n\nflu_train %&gt;% \n  mutate(time = as.numeric(week_start)) -&gt; flu_train\n\nflu_test %&gt;% \n  mutate(time = as.numeric(week_start)) -&gt; flu_test\n\n\ntp_cc &lt;- gam(ilitotal ~ s(time) + s(week, bs = 'cc', k = 52), data = flu_train)\ngp_cc &lt;- gam(ilitotal ~ s(time, bs = 'gp') + s(week, bs = 'cc', k = 52), data = flu_train)\n\n\nflu_train %&gt;% \n  mutate(\n    fitted_tp_cc = predict(tp_cc),\n    fitted_gp_cc = predict(gp_cc)\n  ) %&gt;% \n  pivot_longer(cols = starts_with(\"fitted\"), names_to = \"model\", values_to = \"value\") %&gt;% \n  ggplot(aes(week_start, ilitotal)) +\n  geom_line() +\n  geom_line(aes(y = value, color = model)) +\n  scale_color_manual(\n    values = c(\"fitted_gp_cc\" = \"springgreen3\", \"fitted_tp_cc\" = \"red2\")\n  )\n\n\n\n\n\n\n\n\n\nflu_test %&gt;% \n  mutate(\n    pred_tp_cc = predict(tp_cc, newdata = .),\n    pred_gp_cc = predict(gp_cc, newdata = .)\n  ) %&gt;% \n  pivot_longer(cols = starts_with(\"pred\"), names_to = \"model\", values_to = \"value\") %&gt;% \n  ggplot(aes(week_start, ilitotal)) + \n  geom_line() +\n  geom_line(aes(y = value, color = model)) +\n  ylim(0, NA)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>GAMS for Time Series</span>"
+    ]
+  }
+]

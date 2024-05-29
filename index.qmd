@@ -1,0 +1,5 @@
+# Preface {.unnumbered}
+
+This is a sort of note for myself while reading the book [Forecasting: Principles and Practice](https://otexts.com/fpp3/index.html)[^1]
+
+[^1]: Hyndman, R.J., & Athanasopoulos, G. (2021) Forecasting: principles and practice, 3rd edition, OTexts: Melbourne, Australia. OTexts.com/fpp3. Accessed on 2024-04-26.

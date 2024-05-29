@@ -1,0 +1,6 @@
+"0","aus_economy <- global_economy |>"
+"0","  filter(Code == ""AUS"") |>"
+"0","  mutate(Pop = Population / 1e6)"
+"0",""
+"0","autoplot(aus_economy, Pop) +"
+"0","  labs(y = ""Millions"", title = ""Australian population"")"
