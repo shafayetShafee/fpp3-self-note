@@ -1,6 +1,0 @@
-"0","flu_test %>% "
-"0","  mutate("
-"0","    pred_tps = predict(tps_mod, x_test)[, 1],"
-"0","    pred_mars = predict(mars_mod, x_test)[, 1],"
-"0","    pred_gam = predict(gam_mod, newdata = flu_test)"
-"0","  ) -> flu_test_fitted"

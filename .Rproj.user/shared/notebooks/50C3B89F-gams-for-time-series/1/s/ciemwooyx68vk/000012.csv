@@ -1,4 +1,0 @@
-"0","#| layout-ncol: 2"
-"0","#| layout-nrow: 2"
-"0","forecast::ggAcf(resid(tp_cc)) +"
-"0","  labs(title = ""tp smoothed trend"")"

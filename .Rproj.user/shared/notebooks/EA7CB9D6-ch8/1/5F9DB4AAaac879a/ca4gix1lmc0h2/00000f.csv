@@ -1,8 +1,0 @@
-"0","# Re-index based on trading days"
-"0","google_stock <- gafa_stock |>"
-"0","  filter(Symbol == ""GOOG"", year(Date) >= 2015) |>"
-"0","  mutate(day = row_number()) |>"
-"0","  update_tsibble(index = day, regular = TRUE)"
-"0",""
-"0","# Filter the year of interest"
-"0","google_2015 <- google_stock |> filter(year(Date) == 2015)"

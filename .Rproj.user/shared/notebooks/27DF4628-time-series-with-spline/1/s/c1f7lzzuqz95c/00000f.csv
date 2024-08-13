@@ -1,8 +1,0 @@
-"0","# thin plate spline"
-"0","tps_mod <- Tps(x_train, y_train)"
-"0",""
-"0","# MARS"
-"0","mars_mod <- earth(ilitotal ~ year + week, data = flu_train)"
-"0",""
-"0","# GAM"
-"0","gam_mod <- gam(ilitotal ~ s(year) + s(week), data = flu_train, method = ""REML"")"

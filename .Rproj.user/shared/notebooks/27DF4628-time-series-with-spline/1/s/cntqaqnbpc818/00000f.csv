@@ -1,7 +1,0 @@
-"0","flu_train %>% "
-"0","  mutate("
-"0","    fitted_arima = fitted(arima_mod),"
-"0","    fitted_tps = fitted(tps_mod)[, 1],"
-"0","    fitted_mars = fitted(mars_mod)[, 1],"
-"0","    fitted_gam = fitted(gam_mod)"
-"0","  ) -> flu_train_fitted"

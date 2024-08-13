@@ -1,6 +1,0 @@
-"0","algeria_economy <- global_economy |>"
-"0","  filter(Country == ""Algeria"")"
-"0",""
-"0","algeria_economy |>"
-"0","  autoplot(Exports) +"
-"0","  labs(y = ""% of GDP"", title = ""Exports: Algeria"")"
